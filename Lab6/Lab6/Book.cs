@@ -7,6 +7,7 @@ using static System.Reflection.Metadata.BlobBuilder;
 
 namespace Lab6
 {
+    [Serializable]
     public class Book
     {
 
@@ -19,8 +20,11 @@ namespace Lab6
         public string City { get; set; }
         public bool Status { get; set; }
 
+       
+        public Book()
+        {
 
-        public Book() { }
+        }
 
         public Book(string title, string author, string id, string publisher, int year, string city, bool status) : this(title, author, id)
         {

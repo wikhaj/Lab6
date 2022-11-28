@@ -70,7 +70,9 @@ namespace Lab6
                 {
                     MessageBox.Show("Domyślny status to wypożyczony!");
                 }
-                for1.bindingSource1.Add(new Book(tmp_title, tmp_author, tmp_id, tmp_publisher, tmp_year, tmp_city, tmp_status));
+                Book book = new Book(tmp_title, tmp_author, tmp_id, tmp_publisher, tmp_year, tmp_city, tmp_status);
+                for1.bindingSource1.Add(book);
+                Program.book_list.Add(book);
                 for1.dataGridView1.DataSource = for1.bindingSource1;
 
                 for1.dataGridView1.Update();

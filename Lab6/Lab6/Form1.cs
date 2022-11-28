@@ -17,7 +17,8 @@ namespace Lab6
     public partial class Form1 : Form
     {
         public BindingSource bindingSource1 = new BindingSource();
-        public Book book;
+                
+        //public Book book;
 
         private string filename;
 
@@ -48,30 +49,51 @@ namespace Lab6
         }
         private void button_serialization_Click(object sender, EventArgs e)
         {
-            System.Xml.Serialization.XmlSerializer x = new System.Xml.Serialization.XmlSerializer(book.GetType());
-            x.Serialize(Console.Out, book);
-            Console.WriteLine();
-            Console.ReadLine();
-            XmlSerializer xsSubmit = new XmlSerializer(typeof(Book));
-            var subReq = new Book();
-            var xml = "";
-
-            using (var sww = new StringWriter())
-            {
-                using (XmlWriter writer = XmlWriter.Create(sww))
+            using(SaveFileDialog xml = new SaveFileDialog())
                 {
-                    xsSubmit.Serialize(writer, subReq);
-                    xml = sww.ToString(); // Your XML
+                xml.Filter = "xml files (*.xml)|*.xml";
+                if (xml.ShowDialog() == DialogResult.OK)
+                {
+                    serialize(xml.FileName);
                 }
             }
         }
 
         private void button_deserialization_Click(object sender, EventArgs e)
         {
-
+            using (OpenFileDialog xml = new OpenFileDialog())
+            {
+                xml.Filter = "xml files (*.xml)|*.xml";
+                if (xml.ShowDialog() == DialogResult.OK)
+                {
+                    deserialize(xml.FileName);
+                }
+            }
         }
+        private void deserialize(string path)
+        {
+            var deserializer = new XmlSerializer(typeof(List<Book>));
 
+            using (var reader = new StreamReader(path))
+            {
+                try
+                {
+                    Program.book_list = (List<Book>)deserializer.Deserialize(reader);
+                }
+                catch
+                {
 
+                }
+            }
+        }
+        private void serialize(string path)
+        {
+            var serializer = new XmlSerializer(typeof(List<Book>));
+            using (var writer = new StreamWriter(path))
+            {
+                serializer.Serialize(writer, Program.book_list);
+            }
+        }
         private void LoadCSV()
         {
 
@@ -117,8 +139,9 @@ namespace Lab6
                         int year = Int32.Parse(fields[4]);
                         string city = fields[5];
                         bool status = bool.Parse(fields[6]);
-                        book = new Book(title, author, id, publisher, year, city, status);
+                        Book book = new Book(title, author, id, publisher, year, city, status);
                         bindingSource1.Add(book);
+                        Program.book_list.Add(book);
                     }
                     else
                     {
