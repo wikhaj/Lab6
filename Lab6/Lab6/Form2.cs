@@ -22,6 +22,10 @@ namespace Lab6
         public string tmp_author { get; set; }
         public string tmp_title { get; set; }
         public string tmp_id { get; set; }
+        public string tmp_publisher { get; set; }
+        public int tmp_year { get; set; }
+        public string tmp_city { get; set; }
+        public bool tmp_status { get; set; }
 
         public Form2(Form1 f)
         {
@@ -47,12 +51,40 @@ namespace Lab6
             textBox2.Clear();
             tmp_id = for1.dataGridView1.Rows.Count.ToString();
 
+            if(!String.IsNullOrEmpty(textBox3.Text))
+            {
+                tmp_publisher = textBox3.Text;
+                textBox3.Clear();
+                tmp_city = textBox4.Text;
+                textBox4.Clear();
+                tmp_year = Int32.Parse(textBox6.Text);
+                textBox6.Clear();
 
-            for1.bindingSource1.Add(new Book(tmp_title, tmp_author, tmp_id));
-            for1.dataGridView1.DataSource = for1.bindingSource1;
+                if(comboBox1.SelectedIndex == 0)
+                {
+                    tmp_status = true;
+                }else if(comboBox1.SelectedIndex == 1)
+                {
+                    tmp_status = false;
+                }else 
+                {
+                    MessageBox.Show("Domyślny status to wypożyczony!");
+                }
+                for1.bindingSource1.Add(new Book(tmp_title, tmp_author, tmp_id, tmp_publisher, tmp_year, tmp_city, tmp_status));
+                for1.dataGridView1.DataSource = for1.bindingSource1;
 
-            for1.dataGridView1.Update();
-            for1.dataGridView1.Refresh();
+                for1.dataGridView1.Update();
+                for1.dataGridView1.Refresh();
+            }
+            else
+            {
+                for1.bindingSource1.Add(new Book(tmp_title, tmp_author, tmp_id));
+                for1.dataGridView1.DataSource = for1.bindingSource1;
+
+                for1.dataGridView1.Update();
+                for1.dataGridView1.Refresh();
+            }
+
 
             this.Close();
 

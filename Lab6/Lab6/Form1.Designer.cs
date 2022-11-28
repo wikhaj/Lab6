@@ -34,6 +34,8 @@
             this.button_load = new System.Windows.Forms.Button();
             this.button_add = new System.Windows.Forms.Button();
             this.bookBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.button_serialization = new System.Windows.Forms.Button();
+            this.button_deserialization = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bookBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -41,17 +43,17 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(105, 61);
+            this.dataGridView1.Location = new System.Drawing.Point(12, 12);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 62;
             this.dataGridView1.RowTemplate.Height = 33;
-            this.dataGridView1.Size = new System.Drawing.Size(542, 250);
+            this.dataGridView1.Size = new System.Drawing.Size(776, 299);
             this.dataGridView1.TabIndex = 0;
             // 
             // button_save
             // 
             this.button_save.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button_save.Location = new System.Drawing.Point(497, 343);
+            this.button_save.Location = new System.Drawing.Point(638, 343);
             this.button_save.Name = "button_save";
             this.button_save.Size = new System.Drawing.Size(150, 58);
             this.button_save.TabIndex = 1;
@@ -62,7 +64,7 @@
             // button_load
             // 
             this.button_load.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button_load.Location = new System.Drawing.Point(188, 343);
+            this.button_load.Location = new System.Drawing.Point(108, 343);
             this.button_load.Name = "button_load";
             this.button_load.Size = new System.Drawing.Size(161, 58);
             this.button_load.TabIndex = 2;
@@ -75,7 +77,7 @@
             this.button_add.BackColor = System.Drawing.SystemColors.Window;
             this.button_add.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.button_add.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.button_add.Location = new System.Drawing.Point(105, 343);
+            this.button_add.Location = new System.Drawing.Point(12, 343);
             this.button_add.Name = "button_add";
             this.button_add.Size = new System.Drawing.Size(77, 58);
             this.button_add.TabIndex = 3;
@@ -87,11 +89,35 @@
             // 
             this.bookBindingSource.DataSource = typeof(Lab6.Book);
             // 
+            // button_serialization
+            // 
+            this.button_serialization.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.button_serialization.Location = new System.Drawing.Point(284, 343);
+            this.button_serialization.Name = "button_serialization";
+            this.button_serialization.Size = new System.Drawing.Size(161, 58);
+            this.button_serialization.TabIndex = 4;
+            this.button_serialization.Text = "serialization";
+            this.button_serialization.UseVisualStyleBackColor = true;
+            this.button_serialization.Click += new System.EventHandler(this.button_serialization_Click);
+            // 
+            // button_deserialization
+            // 
+            this.button_deserialization.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.button_deserialization.Location = new System.Drawing.Point(460, 343);
+            this.button_deserialization.Name = "button_deserialization";
+            this.button_deserialization.Size = new System.Drawing.Size(161, 58);
+            this.button_deserialization.TabIndex = 5;
+            this.button_deserialization.Text = "deserialization";
+            this.button_deserialization.UseVisualStyleBackColor = true;
+            this.button_deserialization.Click += new System.EventHandler(this.button_deserialization_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.button_deserialization);
+            this.Controls.Add(this.button_serialization);
             this.Controls.Add(this.button_add);
             this.Controls.Add(this.button_load);
             this.Controls.Add(this.button_save);
@@ -111,5 +137,7 @@
         private Button button_load;
         private Button button_add;
         private BindingSource bookBindingSource;
+        private Button button_serialization;
+        private Button button_deserialization;
     }
 }
